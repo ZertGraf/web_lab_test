@@ -1,0 +1,141 @@
+/* Блок с блюдами - Grid */
+.dishes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Блок каждого блюда - Flex */
+.dish-item {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  border-radius: 35px;
+  cursor: pointer;
+  filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+  background-color: white;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+/* Hover для блока с блюдом */
+.dish-item:hover {
+  border-color: tomato;
+}
+
+/* Изменение цвета кнопки при наведении на блок */
+.dish-item:hover button {
+  background-color: tomato;
+  color: white;
+}
+
+/* Изображение блюда */
+.dish-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 35px;
+  margin: 0 0 15px 0;
+}
+
+/* Цена блюда */
+.dish-price {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Название блюда */
+.dish-name {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 10px 0;
+  flex-grow: 1;
+  color: #222;
+}
+
+/* Вес/объем */
+.dish-weight {
+  font-size: 16px;
+  color: #888;
+  margin: 10px 0;
+}
+
+/* Кнопка "Добавить" */
+.dish-item button {
+  background-color: #f1eee9;
+  color: #333;
+  border: none;
+  margin-top: 15px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Навигация - делаем flexbox */
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Активная ссылка */
+#active {
+  color: tomato;
+}
+
+/* Адаптивность для ≤800px */
+@media (max-width: 800px) {
+  /* Блок с блюдами - 2 колонки */
+  .dishes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Навигационное меню - выравнивание */
+  nav {
+    justify-content: space-between;
+  }
+
+  /* Главный заголовок */
+  h1 {
+    text-align: center;
+  }
+
+  /* Заголовки разделов */
+  section h2 {
+    text-align: center;
+  }
+}
+
+/* Адаптивность для ≤600px */
+@media (max-width: 600px) {
+  /* Блок с блюдами - 1 колонка */
+  .dishes-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Навигационное меню - вертикальное */
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Увеличить шрифт ссылок */
+  nav a {
+    font-size: 22px;
+  }
+
+  /* Главный заголовок */
+  h1 {
+    text-align: center;
+  }
+
+  /* Заголовки разделов */
+  section h2 {
+    text-align: center;
+  }
+}
