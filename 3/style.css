@@ -1,0 +1,211 @@
+/* universal selector with border-box */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* header block */
+header {
+    margin: 0;
+    padding: 30px 40px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    font-size: 36px;
+    color: #333;
+}
+
+/* navigation */
+nav {
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #555;
+}
+
+nav a:hover {
+    color: tomato;
+}
+
+#active {
+    color: tomato;
+}
+
+/* main content */
+main {
+    margin: 0;
+    padding: 40px;
+    flex: 1;
+}
+
+section {
+    margin: 0 0 50px 0;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #222;
+    margin: 0 0 20px 0;
+}
+
+/* text paragraphs */
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* images */
+img {
+    width: 600px;
+    height: 400px;
+    display: block;
+    margin: 20px 0;
+}
+
+/* lists */
+ul {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-size: 18px;
+    color: #333;
+}
+
+td {
+    font-size: 16px;
+    color: #555;
+}
+
+/* footer */
+footer {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 30px 40px;
+}
+
+footer p {
+    color: white;
+    margin: 10px 0;
+}
+
+footer a {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #aaa;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* Адаптивность для главной страницы */
+
+/* ≤800px */
+@media (max-width: 800px) {
+    /* Изображение в блоке "О нас" */
+    img {
+        width: 500px;
+        height: auto;
+    }
+
+    /* Навигационное меню */
+    nav {
+        justify-content: space-between;
+    }
+
+    /* Главный заголовок */
+    h1 {
+        text-align: center;
+    }
+}
+
+/* ≤600px */
+@media (max-width: 600px) {
+    /* Навигационное меню */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Увеличить шрифт ссылок на 4px */
+    nav a {
+        font-size: 22px;
+    }
+
+    /* Главный заголовок */
+    h1 {
+        text-align: center;
+    }
+
+    /* Изображение в блоке "О нас" */
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Текст таблицы - уменьшить шрифт на 2px */
+    th {
+        font-size: 16px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+}
+
+/* ≤400px */
+@media (max-width: 400px) {
+    /* Текст таблицы - уменьшить шрифт еще на 2px */
+    th {
+        font-size: 14px;
+    }
+
+    td {
+        font-size: 12px;
+    }
+}
