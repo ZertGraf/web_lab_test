@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математическая игра</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        #question {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        input {
+            font-size: 18px;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #stats {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Математическая игра</h1>
+    <div id="level"></div>
+    <div id="stats"></div>
+    <div id="question"></div>
+    <input type="text" id="answer" />
+    <br>
+    <button onclick="checkAnswer()">Ответить</button>
+    <button onclick="restartGame()">Перезапустить</button>
+    <button onclick="exitGame()">Выйти</button>
+    <script src="8-math-game.js"></script>
+</body>
+</html>
