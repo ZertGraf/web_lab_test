@@ -1,161 +1,194 @@
-// Функция валидации заказа
-function validateOrder() {
-  const hasSoup = selectedDishes.soup !== null;
-  const hasMain = selectedDishes.main !== null;
-  const hasSalad = selectedDishes.salad !== null;
-  const hasDrink = selectedDishes.drink !== null;
-  const hasDessert = selectedDishes.dessert !== null;
+// Проверка состава ланча и показ уведомлений
 
-  // Ничего не выбрано
-  if (!hasSoup && !hasMain && !hasSalad && !hasDrink && !hasDessert) {
-    return {
-      valid: false,
-      message: 'Ничего не выбрано. Выберите блюда для заказа'
-    };
-  }
+// Получаем форму
+const orderForm = document.getElementById('order-form');
 
-  // Проверка на валидные комбинации
-  // Вариант 1: Суп + Главное блюдо + Салат + Напиток
-  // Вариант 2: Суп + Главное блюдо + Напиток
-  // Вариант 3: Суп + Салат + Напиток
-  // Вариант 4: Главное блюдо + Салат + Напиток
-  // Вариант 5: Главное блюдо + Напиток
-  // Десерты можно добавлять к любому варианту
+// Добавляем обработчик на отправку формы
+orderForm.addEventListener('submit', function(event) {
+    // Получаем выбранные блюда
+    const selectedDishes = getSelectedDishes();
 
-  // Проверяем валидные комбинации
-  const validCombinations = [
-    { soup: true, main: true, salad: true, drink: true },   // Вариант 1
-    { soup: true, main: true, salad: false, drink: true },  // Вариант 2
-    { soup: true, main: false, salad: true, drink: true },  // Вариант 3
-    { soup: false, main: true, salad: true, drink: true },  // Вариант 4
-    { soup: false, main: true, salad: false, drink: true }  // Вариант 5
-  ];
+    // Проверяем состав ланча
+    const validationResult = validateLunchCombo(selectedDishes);
 
-  const currentOrder = {
-    soup: hasSoup,
-    main: hasMain,
-    salad: hasSalad,
-    drink: hasDrink
-  };
-
-  // Проверяем, совпадает ли текущий заказ с одной из валидных комбинаций
-  const isValid = validCombinations.some(combo =>
-    combo.soup === currentOrder.soup &&
-    combo.main === currentOrder.main &&
-    combo.salad === currentOrder.salad &&
-    combo.drink === currentOrder.drink
-  );
-
-  if (isValid) {
-    return { valid: true };
-  }
-
-  // Определяем, какое уведомление показать
-  // Выбраны все необходимые блюда, кроме напитка
-  if ((hasSoup || hasMain || hasSalad) && !hasDrink) {
-    return {
-      valid: false,
-      message: 'Выберите напиток'
-    };
-  }
-
-  // Выбран суп, но не выбраны главное блюдо/салат/стартер
-  if (hasSoup && !hasMain && !hasSalad) {
-    return {
-      valid: false,
-      message: 'Выберите главное блюдо/салат/стартер'
-    };
-  }
-
-  // Выбран салат/стартер, но не выбраны суп/главное блюдо
-  if (hasSalad && !hasSoup && !hasMain) {
-    return {
-      valid: false,
-      message: 'Выберите суп или главное блюдо'
-    };
-  }
-
-  // Выбран только напиток/десерт (без суп/главное/салат)
-  if (!hasSoup && !hasMain && !hasSalad && (hasDrink || hasDessert)) {
-    return {
-      valid: false,
-      message: 'Выберите главное блюдо'
-    };
-  }
-
-  // Если нет напитка вообще
-  if (!hasDrink) {
-    return {
-      valid: false,
-      message: 'Выберите напиток'
-    };
-  }
-
-  return {
-    valid: false,
-    message: 'Выберите главное блюдо'
-  };
-}
-
-// Функция создания и отображения уведомления
-function showNotification(message) {
-  // Проверяем, нет ли уже отображаемого уведомления
-  const existingNotification = document.querySelector('.notification-overlay');
-  if (existingNotification) {
-    existingNotification.remove();
-  }
-
-  // Создаем overlay
-  const overlay = document.createElement('div');
-  overlay.className = 'notification-overlay';
-
-  // Создаем контейнер уведомления
-  const notification = document.createElement('div');
-  notification.className = 'notification';
-
-  // Создаем контент уведомления
-  const messageElement = document.createElement('p');
-  messageElement.className = 'notification-message';
-  messageElement.textContent = message;
-
-  // Создаем кнопку "Окей"
-  const button = document.createElement('button');
-  button.className = 'notification-button';
-  button.textContent = 'Окей';
-
-  // Обработчик клика на кнопку
-  button.addEventListener('click', function() {
-    overlay.remove();
-  });
-
-  // Собираем уведомление
-  notification.appendChild(messageElement);
-  notification.appendChild(button);
-  overlay.appendChild(notification);
-
-  // Добавляем в body
-  document.body.appendChild(overlay);
-}
-
-// Обработчик отправки формы
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const validation = validateOrder();
-
-  if (!validation.valid) {
-    showNotification(validation.message);
-    return false;
-  }
-
-  // Если валидация прошла успешно, отправляем форму
-  event.target.submit();
-}
-
-// Инициализация обработчика формы
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('#order-form');
-  if (form) {
-    form.addEventListener('submit', handleFormSubmit);
-  }
+    // Если состав некорректный, предотвращаем отправку формы и показываем уведомление
+    if (!validationResult.isValid) {
+        event.preventDefault();
+        showNotification(validationResult.message);
+    }
 });
+
+// Функция получения выбранных блюд из заказа
+function getSelectedDishes() {
+    const orderSummary = document.getElementById('order-summary');
+    const categories = {
+        soup: false,
+        main: false,
+        salad: false,
+        drink: false,
+        dessert: false
+    };
+
+    // Проверяем наличие блюд каждой категории
+    const soupDiv = orderSummary.querySelector('[data-category="soup"]');
+    const mainDiv = orderSummary.querySelector('[data-category="main"]');
+    const saladDiv = orderSummary.querySelector('[data-category="salad"]');
+    const drinkDiv = orderSummary.querySelector('[data-category="drink"]');
+    const dessertDiv = orderSummary.querySelector('[data-category="dessert"]');
+
+    if (soupDiv) categories.soup = true;
+    if (mainDiv) categories.main = true;
+    if (saladDiv) categories.salad = true;
+    if (drinkDiv) categories.drink = true;
+    if (dessertDiv) categories.dessert = true;
+
+    return categories;
+}
+
+// Функция проверки состава ланча
+function validateLunchCombo(selected) {
+    const hasSoup = selected.soup;
+    const hasMain = selected.main;
+    const hasSalad = selected.salad;
+    const hasDrink = selected.drink;
+    const hasDessert = selected.dessert;
+
+    // Проверяем, выбрано ли хотя бы одно блюдо (исключая десерт)
+    const hasAnyDish = hasSoup || hasMain || hasSalad || hasDrink;
+
+    // Уведомление 1: Ничего не выбрано
+    if (!hasAnyDish) {
+        return {
+            isValid: false,
+            message: 'Ничего не выбрано. Выберите блюда для заказа'
+        };
+    }
+
+    // Валидные комбо:
+    // 1. Суп + Главное блюдо + Салат + Напиток (+ Десерт)
+    // 2. Суп + Главное блюдо + Напиток (+ Десерт)
+    // 3. Суп + Салат + Напиток (+ Десерт)
+    // 4. Главное блюдо + Салат + Напиток (+ Десерт)
+    // 5. Главное блюдо + Напиток (+ Десерт)
+
+    const combo1 = hasSoup && hasMain && hasSalad && hasDrink;
+    const combo2 = hasSoup && hasMain && !hasSalad && hasDrink;
+    const combo3 = hasSoup && !hasMain && hasSalad && hasDrink;
+    const combo4 = !hasSoup && hasMain && hasSalad && hasDrink;
+    const combo5 = !hasSoup && hasMain && !hasSalad && hasDrink;
+
+    const isValidCombo = combo1 || combo2 || combo3 || combo4 || combo5;
+
+    if (isValidCombo) {
+        return { isValid: true };
+    }
+
+    // Определяем, какое уведомление показать
+
+    // Уведомление 2: Выберите напиток (если есть все, кроме напитка)
+    if (!hasDrink) {
+        return {
+            isValid: false,
+            message: 'Выберите напиток'
+        };
+    }
+
+    // Уведомление 3: Выберите главное блюдо/салат/стартер (если есть суп, но нет главного/салата)
+    if (hasSoup && !hasMain && !hasSalad) {
+        return {
+            isValid: false,
+            message: 'Выберите главное блюдо/салат/стартер'
+        };
+    }
+
+    // Уведомление 4: Выберите суп или главное блюдо (если есть салат, но нет супа/главного)
+    if (hasSalad && !hasSoup && !hasMain) {
+        return {
+            isValid: false,
+            message: 'Выберите суп или главное блюдо'
+        };
+    }
+
+    // Уведомление 5: Выберите главное блюдо (если есть только напиток/десерт)
+    if ((hasDrink || hasDessert) && !hasMain && !hasSoup && !hasSalad) {
+        return {
+            isValid: false,
+            message: 'Выберите главное блюдо'
+        };
+    }
+
+    // Дополнительные случаи
+    if (hasSoup && hasSalad && !hasMain && !hasDrink) {
+        return {
+            isValid: false,
+            message: 'Выберите напиток'
+        };
+    }
+
+    if (hasSoup && hasMain && !hasDrink) {
+        return {
+            isValid: false,
+            message: 'Выберите напиток'
+        };
+    }
+
+    if (hasMain && hasSalad && !hasDrink) {
+        return {
+            isValid: false,
+            message: 'Выберите напиток'
+        };
+    }
+
+    if (hasMain && !hasSalad && !hasSoup && !hasDrink) {
+        return {
+            isValid: false,
+            message: 'Выберите напиток'
+        };
+    }
+
+    // По умолчанию
+    return {
+        isValid: false,
+        message: 'Некорректный состав заказа'
+    };
+}
+
+// Функция показа уведомления
+function showNotification(message) {
+    // Проверяем, нет ли уже уведомления на странице
+    const existingNotification = document.querySelector('.notification-overlay');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    // Создаем оверлей
+    const overlay = document.createElement('div');
+    overlay.className = 'notification-overlay';
+
+    // Создаем блок уведомления
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+
+    // Создаем текст уведомления
+    const messageText = document.createElement('p');
+    messageText.className = 'notification-message';
+    messageText.textContent = message;
+
+    // Создаем кнопку "Окей"
+    const okButton = document.createElement('button');
+    okButton.className = 'notification-button';
+    okButton.textContent = 'Окей';
+
+    // Обработчик закрытия уведомления
+    okButton.addEventListener('click', function() {
+        overlay.remove();
+    });
+
+    // Собираем уведомление
+    notification.appendChild(messageText);
+    notification.appendChild(okButton);
+    overlay.appendChild(notification);
+
+    // Добавляем на страницу
+    document.body.appendChild(overlay);
+}
