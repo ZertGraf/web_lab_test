@@ -2,13 +2,12 @@
 const selectedDishes = {
     soup: null,
     main: null,
-    drink: null
+    drink: null,
 };
 
 // Функция для обновления отображения заказа
 function updateOrderDisplay() {
     const orderSummary = document.getElementById('order-summary');
-    const noSelectionMessage = document.getElementById('no-selection-message');
     const orderTotal = document.getElementById('order-total');
     const totalPriceElement = document.getElementById('total-price');
 
@@ -17,14 +16,10 @@ function updateOrderDisplay() {
 
     if (!hasSelection) {
         // Если ничего не выбрано
-        noSelectionMessage.style.display = 'block';
-        orderTotal.style.display = 'none';
         orderSummary.innerHTML = '<p id="no-selection-message">Ничего не выбрано</p>';
+        orderTotal.style.display = 'none';
         return;
     }
-
-    // Скрываем сообщение "Ничего не выбрано"
-    noSelectionMessage.style.display = 'none';
 
     // Формируем HTML для заказа
     let orderHTML = '';
@@ -87,7 +82,6 @@ function updateOrderDisplay() {
     if (selectedDishes.soup) totalPrice += selectedDishes.soup.price;
     if (selectedDishes.main) totalPrice += selectedDishes.main.price;
     if (selectedDishes.drink) totalPrice += selectedDishes.drink.price;
-
     // Отображаем итоговую стоимость
     totalPriceElement.textContent = `${totalPrice} руб`;
     orderTotal.style.display = 'block';

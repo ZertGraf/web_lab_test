@@ -16,7 +16,7 @@ const dishes = [
         category: 'soup',
         kind: 'fish',
         count: '380 мл',
-        image: 'images/soup1.jpg'
+        image: 'images/salmon-soup.png'
     },
     {
         keyword: 'crocodile-cream-soup',
@@ -43,7 +43,7 @@ const dishes = [
         category: 'soup',
         kind: 'veg',
         count: '350 мл',
-        image: 'images/soup2.jpg'
+        image: 'images/gazpacho.png'
     },
     {
         keyword: 'mushroom-soup',
@@ -52,7 +52,7 @@ const dishes = [
         category: 'soup',
         kind: 'veg',
         count: '370 мл',
-        image: 'images/soup3.jpg'
+        image: 'images/mushroom-soup.png'
     },
 
     // Главные блюда (6 штук: 2 рыбных, 2 мясных, 2 вегетарианских)
@@ -99,7 +99,7 @@ const dishes = [
         category: 'main',
         kind: 'veg',
         count: '320 г',
-        image: 'images/main1.jpg'
+        image: 'images/vegetable-curry.png'
     },
     {
         keyword: 'tofu-teriyaki',
@@ -108,7 +108,7 @@ const dishes = [
         category: 'main',
         kind: 'veg',
         count: '280 г',
-        image: 'images/main2.jpg'
+        image: 'images/tofu-teriyaki.png'
     },
 
     // Салаты и стартеры (6 штук: 1 рыбный, 1 мясной, 4 вегетарианских)
@@ -119,7 +119,7 @@ const dishes = [
         category: 'salad',
         kind: 'fish',
         count: '230 г',
-        image: 'images/salad1.jpg'
+        image: 'images/tuna-salad.png'
     },
     {
         keyword: 'chicken-caesar',
@@ -128,7 +128,7 @@ const dishes = [
         category: 'salad',
         kind: 'meat',
         count: '250 г',
-        image: 'images/salad2.jpg'
+        image: 'images/chicken-caesar.png'
     },
     {
         keyword: 'greek-salad',
@@ -137,7 +137,7 @@ const dishes = [
         category: 'salad',
         kind: 'veg',
         count: '240 г',
-        image: 'images/salad3.jpg'
+        image: 'images/greek-salad.png'
     },
     {
         keyword: 'caprese',
@@ -146,7 +146,7 @@ const dishes = [
         category: 'salad',
         kind: 'veg',
         count: '200 г',
-        image: 'images/salad4.jpg'
+        image: 'images/caprese.png'
     },
     {
         keyword: 'vegetable-spring-rolls',
@@ -155,7 +155,7 @@ const dishes = [
         category: 'salad',
         kind: 'veg',
         count: '180 г',
-        image: 'images/salad5.jpg'
+        image: 'images/vegetable-spring-rolls.png'
     },
     {
         keyword: 'hummus-plate',
@@ -164,7 +164,7 @@ const dishes = [
         category: 'salad',
         kind: 'veg',
         count: '220 г',
-        image: 'images/salad6.jpg'
+        image: 'images/hummus-plate.png'
     },
 
     // Напитки (6 штук: 3 холодных, 3 горячих)
@@ -202,7 +202,7 @@ const dishes = [
         category: 'drink',
         kind: 'hot',
         count: '300 мл',
-        image: 'images/drink1.jpg'
+        image: 'images/cappuccino.png'
     },
     {
         keyword: 'green-tea',
@@ -211,7 +211,7 @@ const dishes = [
         category: 'drink',
         kind: 'hot',
         count: '350 мл',
-        image: 'images/drink2.jpg'
+        image: 'images/green-tea.png'
     },
     {
         keyword: 'hot-chocolate',
@@ -220,7 +220,7 @@ const dishes = [
         category: 'drink',
         kind: 'hot',
         count: '300 мл',
-        image: 'images/drink3.jpg'
+        image: 'images/hot-chocolate.png'
     },
 
     // Десерты (6 штук: 3 маленькая порция, 2 средняя порция, 1 большая порция)
@@ -231,7 +231,7 @@ const dishes = [
         category: 'dessert',
         kind: 'small',
         count: '120 г',
-        image: 'images/dessert1.jpg'
+        image: 'images/tiramisu-small.png'
     },
     {
         keyword: 'panna-cotta-small',
@@ -240,7 +240,7 @@ const dishes = [
         category: 'dessert',
         kind: 'small',
         count: '130 г',
-        image: 'images/dessert2.jpg'
+        image: 'images/panna-cotta-small.png'
     },
     {
         keyword: 'creme-brulee-small',
@@ -249,7 +249,7 @@ const dishes = [
         category: 'dessert',
         kind: 'small',
         count: '110 г',
-        image: 'images/dessert3.jpg'
+        image: 'images/creme-brulee-small.png'
     },
     {
         keyword: 'cheesecake-medium',
@@ -258,7 +258,7 @@ const dishes = [
         category: 'dessert',
         kind: 'medium',
         count: '180 г',
-        image: 'images/dessert4.jpg'
+        image: 'images/cheesecake-medium.png'
     },
     {
         keyword: 'chocolate-fondant-medium',
@@ -267,7 +267,7 @@ const dishes = [
         category: 'dessert',
         kind: 'medium',
         count: '170 г',
-        image: 'images/dessert5.jpg'
+        image: 'images/chocolate-fondant-medium.png'
     },
     {
         keyword: 'napoleon-cake-large',
@@ -276,6 +276,6 @@ const dishes = [
         category: 'dessert',
         kind: 'large',
         count: '250 г',
-        image: 'images/dessert6.jpg'
+        image: 'images/napoleon-cake-large.png'
     }
 ];
