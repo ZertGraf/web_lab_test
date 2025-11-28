@@ -10,3 +10,5 @@ function fibb(n) {
   }
   return b;
 }
+
+console.log(fibb(5))

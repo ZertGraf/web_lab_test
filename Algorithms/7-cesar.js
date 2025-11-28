@@ -20,4 +20,4 @@ function cesar(str, shift, action) {
   return result;
 }
 
-cesar("эзтыхз фзъзъз", 4, "decode");
+console.log(cesar("эзтыхз фзъзъз", 4, "decode"));

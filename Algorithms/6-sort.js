@@ -11,3 +11,12 @@ function getSortedArray(array, key) {
   }
   return arr;
 }
+
+const users = [
+    { name: 'Иван', age: 25 },
+    { name: 'Анна', age: 20 },
+    { name: 'Петр', age: 30 }
+];
+
+console.log(getSortedArray(users, 'age'));
+console.log(getSortedArray(users, 'name'));

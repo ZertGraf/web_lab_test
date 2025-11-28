@@ -16,3 +16,5 @@ function pluralizeRecords(n) {
 
   return `В результате выполнения запроса ${was} ${n} ${record}`;
 }
+
+console.log(pluralizeRecords(5))

@@ -9,3 +9,5 @@ function minDigit(x) {
   }
   return min;
 }
+
+console.log(minDigit(519))

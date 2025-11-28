@@ -5,3 +5,5 @@ function pow(x, n) {
   }
   return result;
 }
+
+console.log(pow(2, 3));

@@ -6,3 +6,5 @@ function gcd(a, b) {
   }
   return a;
 }
+
+console.log(gcd(6, 2));
