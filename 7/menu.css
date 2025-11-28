@@ -1,0 +1,545 @@
+/* Блок с фильтрами */
+.filters {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: #f1eee9;
+    color: #333;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #e0ddd8;
+}
+
+.filter-button.active {
+    background-color: tomato;
+    color: white;
+    border-color: tomato;
+}
+
+/* Блок с блюдами - Grid */
+.dishes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Блок каждого блюда - Flex */
+.dish-item {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    border-radius: 35px;
+    cursor: pointer;
+    filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+    background-color: white;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover для блока с блюдом */
+.dish-item:hover {
+    border-color: tomato;
+}
+
+/* Изменение цвета кнопки при наведении на блок */
+.dish-item:hover button {
+    background-color: tomato;
+    color: white;
+}
+
+/* Изображение блюда */
+.dish-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 35px;
+    margin: 0 0 15px 0;
+}
+
+/* Цена блюда */
+.dish-price {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Название блюда */
+.dish-name {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px 0;
+    flex-grow: 1;
+    color: #222;
+}
+
+/* Вес/объем */
+.dish-weight {
+    font-size: 16px;
+    color: #888;
+    margin: 10px 0;
+}
+
+/* Кнопка "Добавить" */
+.dish-item button {
+    background-color: #f1eee9;
+    color: #333;
+    border: none;
+    margin-top: 15px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Навигация - делаем flexbox */
+nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Активная ссылка */
+#active {
+    color: tomato;
+}
+
+/* Адаптивность для ≤800px */
+@media (max-width: 800px) {
+
+    /* Блок с блюдами - 2 колонки */
+    .dishes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Навигационное меню - выравнивание */
+    nav {
+        justify-content: space-between;
+    }
+
+    /* Главный заголовок */
+    h1 {
+        text-align: center;
+    }
+
+    /* Заголовки разделов */
+    section h2 {
+        text-align: center;
+    }
+}
+
+/* Адаптивность для ≤600px */
+@media (max-width: 600px) {
+
+    /* Блок с блюдами - 1 колонка */
+    .dishes-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Навигационное меню - вертикальное */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Увеличить шрифт ссылок */
+    nav a {
+        font-size: 22px;
+    }
+
+    /* Главный заголовок */
+    h1 {
+        text-align: center;
+    }
+
+    /* Заголовки разделов */
+    section h2 {
+        text-align: center;
+    }
+}
+
+/* Стили для формы заказа */
+#order-form-section {
+    background-color: #f5f5f5;
+    padding: 40px;
+    margin: 0;
+}
+
+#order-form-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.form-column {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-column h3 {
+    font-size: 22px;
+    margin: 0 0 20px 0;
+    color: #333;
+}
+
+.form-column label {
+    display: block;
+    font-size: 16px;
+    margin: 15px 0 5px 0;
+    color: #333;
+    font-weight: 400;
+}
+
+.form-column select,
+.form-column input[type="text"],
+.form-column input[type="email"],
+.form-column input[type="tel"],
+.form-column input[type="time"],
+.form-column textarea {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-column textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-wrapper label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delivery-note,
+.time-note {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.delivery-time-fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.delivery-time-fieldset legend {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0 5px;
+    color: #333;
+}
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.radio-wrapper input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.radio-wrapper label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-group button[type="reset"] {
+    background-color: #f1eee9;
+    color: #333;
+}
+
+.button-group button[type="reset"]:hover {
+    background-color: #ddd;
+}
+
+.button-group button[type="submit"] {
+    background-color: #f1eee9;
+    color: #333;
+}
+
+.button-group button[type="submit"]:hover {
+    background-color: tomato;
+    color: white;
+}
+
+/* Адаптивность для формы */
+@media (max-width: 800px) {
+    .form-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #order-form-section {
+        padding: 20px;
+    }
+
+    .form-column {
+        padding: 20px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+}
+
+/* Стили для блока заказа */
+#order-summary {
+    margin-bottom: 20px;
+}
+
+#order-summary p {
+    margin: 10px 0;
+}
+
+#no-selection-message {
+    color: #666;
+    font-style: italic;
+}
+
+.order-category {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.order-category p {
+    margin: 5px 0;
+}
+
+.order-category p:first-child {
+    font-weight: 700;
+}
+
+#order-total {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3cd;
+    border-radius: 5px;
+    border: 1px solid #ffc107;
+}
+
+#order-total p {
+    margin: 5px 0;
+}
+
+#total-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: tomato;
+}
+
+.dish-item img {
+    width: 100%;
+    height: 400px;
+    /* фиксированная высота */
+    object-fit: cover;
+    /* обрезка с сохранением пропорций */
+    border-radius: 35px;
+    margin: 0 0 15px 0;
+}
+
+/* Lunch Options Block */
+#lunch-options-section {
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+#lunch-options-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.lunch-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lunch-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    min-height: 150px;
+}
+
+.lunch-option:hover {
+    border-color: tomato;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(255, 99, 71, 0.15);
+}
+
+.lunch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.lunch-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.lunch-option:hover .lunch-item img {
+    transform: translateY(-5px) scale(1.1);
+}
+
+.lunch-item span {
+    font-size: 12px;
+    text-align: center;
+    color: #333;
+    font-weight: 400;
+    max-width: 70px;
+}
+
+.dessert-info {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dessert-info p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Notification Styles */
+.notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.notification-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+.notification-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.notification-button {
+    padding: 10px 30px;
+    background-color: #f1eee9;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.notification-button:hover {
+    background-color: tomato;
+    color: white;
+}
