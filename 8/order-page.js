@@ -8,14 +8,32 @@ const selectedDishes = {
 
 let dishes = [];
 
+function normalizeCategoryName(category) {
+    const mapping = {
+        'soup': 'soup',
+        'main-course': 'main',
+        'salad': 'salad',
+        'drink': 'drink',
+        'dessert': 'dessert'
+    };
+    return mapping[category] || category;
+}
+
 async function loadDishes() {
     try {
         const response = await fetch('https://edu.std-900.ist.mospolytech.ru/labs/api/dishes');
         if (!response.ok) {
             throw new Error('failed to load dishes');
         }
-        dishes = await response.json();
-        dishes.sort((a, b) => a.name.localeCompare(b, 'ru'));
+        const rawDishes = await response.json();
+
+        // нормализуем категории чтобы совпадали с ключами selectedDishes
+        dishes = rawDishes.map(dish => ({
+            ...dish,
+            category: normalizeCategoryName(dish.category)
+        }));
+
+        dishes.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
         return dishes;
     } catch (error) {
         console.error('error loading dishes:', error);
